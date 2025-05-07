@@ -1,0 +1,5 @@
+# Ignore everything in the synthetic_data folder
+data_generation/synthetic_data/*
+
+# Except the .gitkeep file
+!data_generation/synthetic_data/.gitkeep
