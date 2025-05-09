@@ -3,3 +3,6 @@ data_generation/synthetic_data/*
 
 # Except the .gitkeep file
 !data_generation/synthetic_data/.gitkeep
+
+# Ignore __pycache__ directories
+__pycache__/
