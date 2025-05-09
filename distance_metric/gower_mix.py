@@ -82,7 +82,7 @@ def gower_distance(data_x, data_y=None, alpha=1, weight=None, mix_features=None)
         weighted_differing_values_sum = np.nansum(differing_values, axis=1)
 
         total_weighted_sum = weighted_numeric_abs_sum + weighted_categorical_sum + weighted_differing_values_sum
-        total_weighted_row = total_weighted_sum / np.sum(weight)
+        total_weighted_row = total_weighted_sum #/ np.sum(weight)
 
         total_weighted[i] = total_weighted_row
 
