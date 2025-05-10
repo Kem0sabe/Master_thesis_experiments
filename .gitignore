@@ -6,3 +6,5 @@ data_generation/synthetic_data/*
 
 # Ignore __pycache__ directories
 __pycache__/
+
+dataset_cleaning/fraud_raw.csv
