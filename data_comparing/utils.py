@@ -365,12 +365,12 @@ def privacy_lists_to_summary(privacy_list, bar_labels=None):
         assert len(bar_labels) == num_datasets, "Length of bar_labels must match number of datasets."
     
     distances = [entry[0] for entry in privacy_list]
-    distances = pd.concat(qunatiles, axis=1).transpose().rename_axis("Mapping").reset_index()
-    distances.insert(0, 'Privacy', [bar_labels[i//3] if i % 3 == 0 else "" for i in range(len(result))])
+    distances = pd.concat(distances, axis=1).transpose().rename_axis("Mapping").reset_index()
+    distances.insert(0, 'Privacy', [bar_labels[i//3] if i % 3 == 0 else "" for i in range(len(distances))])
 
     NNAAs = [entry[1] for entry in privacy_list]
     df_NNAAs = pd.DataFrame({'Privacy': bar_labels, 'NNAA': NNAAs})
-    return result, df_NNAAs
+    return distances, df_NNAAs
 
 
 def utility_list_to_summary(utility_list, bar_labels=None):
