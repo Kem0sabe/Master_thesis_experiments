@@ -138,6 +138,7 @@ def compare_dataframes(
 
 
 
+
 def plot_single_dataframe(
     df: pd.DataFrame,
     nominal_values: dict,
@@ -391,7 +392,7 @@ def utility_list_to_summary(utility_list, bar_labels=None):
     full = pd.concat([reals_df, fakes_df], axis=1)
     full = full.reset_index().rename(columns={'index': 'Method'})
 
-    method_counts = reals_df.shape[0] // num_datasets
+    measures_count = reals_df.shape[1] 
 
     dp_descriptions1 = [bar_labels[i//num_datasets] if i % num_datasets == 0 else "" for i in range(full.shape[0])]
 
@@ -403,7 +404,7 @@ def utility_list_to_summary(utility_list, bar_labels=None):
     differnce_mean = differnce.mean(axis=0)
 
     
-    dp_descriptions2 = [bar_labels[i//method_counts] if i % method_counts == 0 else "" for i in range(len(differnce_mean))]
+    dp_descriptions2 = [bar_labels[i//measures_count] if i % measures_count == 0 else "" for i in range(len(differnce_mean))]
 
     differnce_df = pd.DataFrame({
         'DP': dp_descriptions2,
