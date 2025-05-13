@@ -37,7 +37,14 @@ def compare_dataframes(
         for i, (col, cat_vals, cont_vals, is_cat) in enumerate(pair):
             plt.subplot(1, 2, i + 1)
             if is_cat:
-                all_categories = set(cat_vals[0].unique()).union(set(cat_vals[1].unique()))
+                # Sort original categories by frequency
+                orig_counts_sorted = cat_vals[0].value_counts()
+                all_categories = orig_counts_sorted.index.tolist()
+
+                # Add synthetic-only categories at the end
+                extra_categories = [cat for cat in cat_vals[1].unique() if cat not in all_categories]
+                all_categories.extend(extra_categories)
+
                 orig_counts = cat_vals[0].value_counts().reindex(all_categories, fill_value=0)
                 syn_counts = cat_vals[1].value_counts().reindex(all_categories, fill_value=0)
                 width = 0.35
@@ -105,7 +112,14 @@ def compare_dataframes(
 
             # Categorical plot
             plt.subplot(1, 2, 2)
-            all_categories = set(cat_orig.unique()).union(set(cat_syn.unique()))
+            # Sort original categories by frequency
+            orig_counts_sorted = cat_vals[0].value_counts()
+            all_categories = orig_counts_sorted.index.tolist()
+
+            # Add synthetic-only categories at the end
+            extra_categories = [cat for cat in cat_vals[1].unique() if cat not in all_categories]
+            all_categories.extend(extra_categories)
+
             orig_counts = cat_orig.value_counts().reindex(all_categories, fill_value=0)
             syn_counts = cat_syn.value_counts().reindex(all_categories, fill_value=0)
             width = 0.35
